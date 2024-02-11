@@ -1,0 +1,48 @@
+{
+  "appId": "com.phreshplayer",
+  "productName": "PhreshPlayer",
+  "copyright": "© 2018, Phresh-IT",
+  "asar": true,
+  "fileAssociations": {
+    "ext": "pppl",
+    "name": "PhreshPlayer playlist"
+  },
+  "publish": [
+    {
+      "provider": "generic",
+      "url": "http://phresh-it.hu/old/apps/phreshplayer/releases/"
+    }
+  ],
+  "linux": {
+    "icon": "build/icons/",
+    "maintainer": "Krisztian Kis",
+    "synopsis": "Media player.",
+    "category": "AudioVideo",
+    "packageCategory": "video",
+    "description": "Electron based media player.",
+    "target": [
+      "AppImage"
+    ]
+  },
+  "win": {
+    "icon": "app/img/phreshplayer-icon.ico",
+    "publisherName": "Krisztian Kis",
+    "target": [
+      "nsis"
+    ]
+  },
+  "nsis": {
+    "oneClick": true,
+    "perMachine": true,
+    "installerIcon": "app/img/phreshplayer-icon.ico",
+    "createDesktopShortcut": true
+  },
+  "mac": {
+    "icon": "build/icons/phreshplayer-icon.icns",
+    "category": "public.app-category.video",
+    "target": [
+      "zip",
+      "dmg"
+    ]
+  }
+}

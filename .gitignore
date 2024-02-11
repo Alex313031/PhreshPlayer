@@ -1,3 +1,18 @@
-node_modules/
+node_modules
+*.log
+.DS_Store
+Thumbs.db
 dist/
-package-lock.json
+build/
+src/static/*.css
+/release/
+coverage/
+
+yarn.lock
+
+# IntelliJ platform
+.idea/
+*.iml
+
+# Dolphin file manager
+.directory

@@ -10,14 +10,15 @@ const i18n = new(require(__dirname + '/locales/i18n'));
 
 let mainWindow;
 
-const isSecondInstance = app.makeSingleInstance((commandLine, workingDirectory) => {
+app.requestSingleInstanceLock();
+app.on('second-instance', (commandLine, workingDirectory) => {
   if (mainWindow) {
     if (mainWindow.isMinimized()) mainWindow.restore()
     mainWindow.focus();
+  } else {
+    app.quit();
   }
-});
-
-if (isSecondInstance) { app.quit(); }
+})
 
 function createWindow () {
 
@@ -33,10 +34,19 @@ function createWindow () {
     'height': mainWindowState.height,
     title: 'PhreshPlayer', 
     icon: __dirname + '/app/img/phreshplayer-icon.png',
-    frame: true
+    useContentSize: true,
+    frame: true,
+    autoHideMenuBar: true,
+    darkTheme: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      experimentalFeatures: true,
+      webviewTag: true,
+      devTools: true,
+      enableRemoteModule: true
+    }
   });
-
-  mainWindow.setMenu(null);
 
   mainWindowState.manage(mainWindow);
 
@@ -202,6 +212,8 @@ function createWindow () {
   }
 
 }
+
+app.commandLine.appendSwitch('ignore-gpu-blocklist');
 
 app.on('ready', createWindow);
 
